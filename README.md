@@ -88,7 +88,7 @@ from Function_Approximation.AdaptiveSpline import AdaptiveSplineApproximation
 AdaptiveSplineApproximation(fun, x_span, eps=1e-5)
 ```
 
-<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，```eps```为精度，默认为$\displaystyle 10^{-5}$。
+<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，```eps```为精度，默认为1e-5。
 
 #### <font face="Times New Roman">2.1.2 </font><font face="黑体">方法(类属性)简介</font><br/>
 
