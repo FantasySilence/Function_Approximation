@@ -1,6 +1,7 @@
 # <font face="黑体">函数逼近各方法的调用说明</font>
 
-<font face="Times New Roman">Powered by: </font><font face="宋体">御河DE天街</font>
+<font face="宋体">代码编写：御河DE天街</font><br/>
+<font face="Times New Roman">Powered by: FantasySilence</font>
 
 ## <font face="Times New Roman">1 </font><font face="黑体">最小二乘逼近</font>
 
@@ -88,7 +89,7 @@ from Function_Approximation.AdaptiveSpline import AdaptiveSplineApproximation
 AdaptiveSplineApproximation(fun, x_span, eps=1e-5)
 ```
 
-<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，```eps```为精度，默认为1e-5。
+<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，```eps```为精度，默认为$\displaystyle 10^{-5}$。
 
 #### <font face="Times New Roman">2.1.2 </font><font face="黑体">方法(类属性)简介</font><br/>
 
@@ -172,13 +173,14 @@ from Function_Approximation.ChebyshevSeries import ChebyshevSeriesApproximation
 BestSquareApproximation(fun, x_span=np.array([-1,1]), k=6)
 ```
 
-<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，默认为[-1,1]```k```为拟合多项式的最高阶次，默认为6。
+<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，默认为[-1,1]，```k```为拟合多项式的最高阶次，默认为6。
 
 #### <font face="Times New Roman">4.1.2 </font><font face="黑体">方法(类属性)简介</font><br/>
 
 进行拟合：```self.fit_approximation()```<br/>
 绘制拟合曲线：```self.plt_approximation(is_show=True)```<br/>
 逼近多项式系数及对应阶次：```self.poly_coefficient```和```self.polynomial_orders```<br/>
+切比雪夫多项式各项对应的系数：```self.T_coefficient```<br/>
 逼近多项式: ```self.approximation_poly```<br/>
 逼近的最大绝对误差: ```self.max_abs_error```<br/>
 
@@ -201,4 +203,141 @@ print(csa.approximation_poly)
 print('切比雪夫级数逼近的最大绝对误差是：')
 print(csa.max_abs_error)
 csa.plt_approximation()
+```
+
+## <font face="Times New Roman">5 </font><font face="黑体">切比雪夫零点插值逼近</font>
+
+### <font face="Times New Roman">5.1 </font><font face="黑体">初始化对象</font> 
+
+<font face="宋体">首先需要导入对应的模块：</font><br/>
+```
+from Function_Approximation.ChebyshevZero import ChebyshevZeroPointsInterpolation
+```
+
+#### <font face="Times New Roman">5.1.1 </font><font face="黑体">参数说明</font><br/>
+
+```
+ChebyshevZeroPointsInterpolation(fun, x_span=np.array([-1,1]), order=5)
+```
+<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，默认为[-1,1]，```order```为拟合多项式的最高阶次，默认为5。
+
+#### <font face="Times New Roman">5.1.2 </font><font face="黑体">方法(类属性)简介</font><br/>
+
+进行拟合：```self.fit_approximation()```<br/>
+绘制拟合曲线：```self.plt_approximation(is_show=True)```<br/>
+切比雪夫多项式零点：```self.chebyshev_zeros```<br/>
+逼近多项式系数及对应阶次：```self.poly_coefficient```和```self.polynomial_orders```<br/>
+逼近多项式: ```self.approximation_poly```<br/>
+逼近的最大绝对误差: ```self.max_abs_error```<br/>
+
+### <font face="Times New Roman">5.2 </font><font face="黑体">调用示例</font>
+
+```
+import numpy as np
+from Function_Approximation.ChebyshevZero import ChebyshevZeroPointsInterpolation
+
+def fun(x):
+    return np.exp(x)
+
+czpi = ChebyshevZeroPointsInterpolation(fun=fun, order=2, x_span=[-1,1])
+czpi.fit_approximation()
+print('切比雪夫多项式零点：')
+print(czpi.chebyshev_zeros)
+print('切比雪夫多项式插值系数与阶次：')
+print(czpi.poly_coefficient)
+print(czpi.coefficient_order)
+print('切比雪夫多项式零点插值逼近多项式：')
+print(czpi.approximation_poly)
+print('切比雪夫多项式零点插值逼近的最大绝对误差是：')
+print(czpi.max_abs_error)
+czpi.plt_approximation()
+```
+
+## <font face="Times New Roman">6 </font><font face="黑体">勒让德级数逼近</font>
+
+### <font face="Times New Roman">6.1 </font><font face="黑体">初始化对象</font> 
+
+<font face="宋体">首先需要导入对应的模块：</font><br/>
+```
+from Function_Approximation.LegendreSeries import LegendreSeriesApproximation
+```
+
+#### <font face="Times New Roman">6.1.1 </font><font face="黑体">参数说明</font><br/>
+
+```
+LegendreSeriesApproximation(fun, x_span=np.array([-1,1]), k=6)
+```
+<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，默认为[-1,1]，```k```为拟合多项式的最高阶次，默认为6。
+
+#### <font face="Times New Roman">6.1.2 </font><font face="黑体">方法(类属性)简介</font><br/>
+
+进行拟合：```self.fit_approximation()```<br/>
+绘制拟合曲线：```self.plt_approximation(is_show=True)```<br/>
+逼近多项式系数及对应阶次：```self.poly_coefficient```和```self.polynomial_orders```<br/>
+勒让德多项式各项对应的系数：```self.T_coefficient```<br/>
+逼近多项式: ```self.approximation_poly```<br/>
+逼近的最大绝对误差: ```self.max_abs_error```<br/>
+
+### <font face="Times New Roman">6.2 </font><font face="黑体">调用示例</font>
+
+```
+import sympy as sp
+from Function_Approximation.LegendreSeries import LegendreSeriesApproximation
+
+t = sp.symbols('t')
+fun = sp.exp(t)
+
+lsa = LegendreSeriesApproximation(fun,x_span=[-1,1],k=3)
+lsa.fit_approximation()
+print('勒让德级数逼近系数及对应阶次：')
+print(lsa.poly_coefficient)
+print(lsa.polynomial_orders)
+print('勒让德级数逼近多项式：')
+print(lsa.approximation_poly)
+print('勒让德级数逼近的最大绝对误差是：')
+print(lsa.max_abs_error)
+print(lsa.T_coefficient)
+lsa.plt_approximation()
+```
+
+## <font face="Times New Roman">7 </font><font face="黑体">离散傅里叶变换逼近</font>
+
+### <font face="Times New Roman">7.1 </font><font face="黑体">初始化对象</font> 
+
+<font face="宋体">首先需要导入对应的模块：</font><br/>
+```
+from Function_Approximation.DiscreteFourier import DiscreteFourierTransformApproximation
+```
+
+#### <font face="Times New Roman">7.1.1 </font><font face="黑体">参数说明</font><br/>
+```
+DiscreteFourierTransformApproximation(y, x_span, fun=None)
+```
+<font face="宋体">其中，```fun```为被逼近的函数，```x_span```为逼近的区间，```y```为被逼近的离散数据点。
+
+#### <font face="Times New Roman">7.1.2 </font><font face="黑体">方法(类属性)简介</font><br/>
+
+进行拟合：```self.fit_approximation()```<br/>
+绘制拟合曲线：```self.plt_approximation(is_show=True)```<br/>
+逼近多项式: ```self.approximation_poly```<br/>
+正弦项系数：```self.sin_term```<br/>
+余弦项系数：```self.cos_term```<br/>
+
+### <font face="Times New Roman">7.2 </font><font face="黑体">调用示例</font>
+```
+import numpy as np
+from Function_Approximation.DiscreteFourier import DiscreteFourierTransformApproximation
+
+def fun(x):
+    return x**4-3*x**3+2*x**2-np.tan(x*(x-2))
+
+x = np.linspace(0,2,20,endpoint=False)
+y = fun(x)
+dft = DiscreteFourierTransformApproximation(y, x_span=[0,2],fun=fun)
+dft.fit_approximation()
+print('正弦项系数为：',dft.sin_term)
+print('余弦项系数为：',dft.cos_term)
+print('离散傅里叶变换逼近多项式：')
+print(dft.approximation_poly)
+dft.plt_approximation()
 ```
