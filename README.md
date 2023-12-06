@@ -26,7 +26,7 @@ LeastSquarePolynomialFitting(x, y, k=None, w=None, base_fun='default', fun_list=
 如果多项式拟合，拟合多项式的系数以及对应的阶次：<code>self.poly_coefficient</code>和<code>self.polynomial_orders</code><br/>
 
 ### <font face="Times New Roman">1.2 </font><font face="黑体">调用示例</font>
-#### <font face="Times New Roman">2.1.1 </font><font face="黑体">使用幂函数作为基函数进行拟合</font><br/>
+#### <font face="Times New Roman">1.2.1 </font><font face="黑体">使用幂函数作为基函数进行拟合</font><br/>
 
 ```
 import numpy as np
@@ -42,7 +42,7 @@ print('拟合多项式系数的阶次：{}'.format(ls.polynomial_orders))
 ls.plt_curve_fit()
 ``` 
 
-#### <font face="Times New Roman">2.1.2 </font><font face="黑体">使用正交多项式作为基函数进行拟合</font>
+#### <font face="Times New Roman">1.2.2 </font><font face="黑体">使用正交多项式作为基函数进行拟合</font>
 
 ```
 import numpy as np
@@ -57,7 +57,7 @@ print('拟合多项式系数的阶次：{}'.format(ls2.polynomial_orders))
 ls2.plt_curve_fit()
 ```
 
-#### <font face="Times New Roman">2.1.3 </font><font face="黑体">使用自定义的一系列函数作为基函数进行拟合</font>
+#### <font face="Times New Roman">1.2.3 </font><font face="黑体">使用自定义的一系列函数作为基函数进行拟合</font>
 
 ```
 import numpy as np
